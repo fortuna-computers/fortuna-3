@@ -1,0 +1,58 @@
+- Hardware
+  - Multiple boards
+    - Motherboard
+      - Z80
+      - Clock generator
+      - Clock selector (0.5, 1, 2, 4 Mhz)
+      - Clock divider
+      - Automatic wait on IORQ
+      - Board input pins (single-row)
+      - Debug port (double-row or ribbon cable connector)
+    - Memory board
+      - ROM with common functions + operating system (?) + boot
+        - Could also be a non-changing RAM area
+        - Detect Fortuna version
+      - RAM 512k
+      - Multiple memory bank
+      - Microcontroller (?) to select bank
+    - Controller board
+      - Microcontroller (ATTINY?) with
+        - Z80 SIO (?)
+        - Serial input/output
+          - Interrupt
+        - Timers
+        - Wall clock
+        - VGA32 (?)
+    - SDCard
+      - Microcontroller for the SDCard
+        - FAT16/32 implementation
+        - If controller board uses SIO, put timers here
+      - Interrupt on read/write
+      - How to save to any memory location?
+        - Maybe MSB controlled directly and LSB with counter
+        - Z80 DMA?
+    - Sound (?)
+      - AY-3-8910
+
+- Hardware (alternative design)
+  - Microprocessor: Z80180 or Z80182 (alternative HD64180R1, same as Z180)
+    - Includes MMU, DMA controller, UART, timers
+  - Clock divider logic
+  - Wait on IRQ (?)
+  - SRAM Memory 512k (IS62WV5128EALL-55TLI) (or memory board)
+  - Controller board for SDCard, without timers or serial
+    - Add wall clock
+  - VGA32
+  - Maybe sound (?) - AY-3-8910
+
+- Buy a PS/2 keyboard
+
+- OS
+  - Separate OS and COMMAND.COM
+  - Unit tests 
+  - First 16 kB (?) are used for commom functions and system calls
+    - Maybe call implementation can go in a different memory bank?
+  - The rest for application or COMMAND.COM
+  - Can use memory map (brokered by the OS)
+  - Can run some applications at the same time
+  - Use CP/M as base for system calls http://www.gaby.de/cpm/manuals/archive/cpm22htm/ch5.htm
