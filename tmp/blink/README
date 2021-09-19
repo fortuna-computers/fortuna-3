@@ -1,0 +1,14 @@
+This configuration assumes that this is run from a Raspberry Pi connected
+directly to a STM32F103C8T6.
+
+Software required:
+  - openocd
+  - libopencm3
+
+Pin connections should be:
+
+RPI   --   STM32
+3.3V       3.3V
+GPIO24     SWIO
+GPIO25     SWCLK
+GND        GND
